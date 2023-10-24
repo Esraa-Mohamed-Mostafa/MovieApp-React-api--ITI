@@ -13,8 +13,11 @@ function App() {
 <div>
   <Navbar/>
 <Routes>
-  <Route path="/details" element={<Details/>}/>
+  <Route path="/details/:id" element={<Details/>}/>
   <Route path="/movie" element={<Movie/>}/>
+
+  {/* <Route path="/details/:name/:id" element={<Details/>}/> */}
+
 
 </Routes>
 </div>
