@@ -1,8 +1,33 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Card from 'react-bootstrap/Card';
 import Spinner from 'react-bootstrap/Spinner';
 import { Link } from "react-router-dom";
+
+
+
+import * as React from 'react';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+
+
+import TextField from '@mui/material/TextField';
+import SearchIcon from '@mui/icons-material/Search';
+
+
+
+
+
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+
+
+
 
 
 const Movie = () => {
@@ -74,7 +99,7 @@ const Movie = () => {
   // else { return item; }
 
 
-  const handelType = (event)=> {
+  const handelType = (event) => {
     setFilterValue(event.target.value);
     onFilter(event.target.value)
 
@@ -92,47 +117,66 @@ const Movie = () => {
     <>
       <div className="py-3 ">
         <div className="container">
-          <input type="text" placeholder="search "
-            value={searchValue}
-            onChange={(e) => handleSearch(e.target.value)}
-          />
-          <div>
-            <select id="type" onChange={handelType}>
-              <option value="movie"> movie</option>
-              <option value="tv"> tv</option>
-              <option value="person"> person</option>
-            </select>
-          </div>
 
+          <div style={{ display: 'flex', justifyContent: 'space- between' }}>
+
+            <TextField id="standard-basic" label="search" variant="standard"
+              value={searchValue}
+              onChange={(e) => handleSearch(e.target.value)} >
+            </TextField>
+            <SearchIcon position="start"> </SearchIcon>
+
+            <FormControl>
+              <InputLabel>Media Type</InputLabel>
+              <Select id="type" onChange={handelType}>
+                <MenuItem value=""> ...</MenuItem>
+                <MenuItem value="movie"> movie</MenuItem>
+                <MenuItem value="tv"> tv</MenuItem>
+                <MenuItem value="person"> person</MenuItem>
+              </Select>
+            </FormControl>
+
+          </div>
 
           <h2 className="py-3 ">
             movies          </h2>
-          <div className=" card-deck">
-            <div className=" row">
-              {movieData.map((movie) => {
-                return (
-                  <div key={movie.id} className=" card me-2" style={{ width: '13rem' }}>
-                    {/* <Card.Img orientation="top" className="card-img-top p-4" src={product.image} /> */}
-                    <Card.Body>
-                      <h4 >{movie.title}</h4>
-                      {/* <span>
-                                          <Rate className=" my-3 w-75" defaultValue={product.rating.rate} allowHalf /></span>*/}
-                      {/* <span className=" bg-dark p-2 rounded-circle">
-                          <Link className=" text-decoration-none text-white"
-                            to={`/details/${movie.id}`}>Details</Link></span> */}
+          <div className="row">
+            {movieData.map((movie) => {
+              return (
+                <Card key={movie.id} sx={{ maxWidth: 345, margin: '10px' }}>
+                  <CardMedia
+                    sx={{ height: 140 }}
+                    image={"https://image.tmdb.org/t/p/w500/" + movie.poster_path}
+                    title="green iguana"
+                  />
+                  {/* <Card.Img orientation="top" className="card-img-top p-4" src={product.image} /> */}
 
-                      <span className=" bg-dark p-2 rounded-circle">
-                        <Link className=" text-decoration-none text-white"
-                          to={`/details/${movie.media_type}/${movie.id}`}>Details</Link>
-                      </span>
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                      {movie.title}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Lizards
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
 
-                    </Card.Body>
-                  </div>
-                )
-              })}
-            </div></div>
+                    <Button variant="contained" href="#contained-buttons">
+                      <Link className=" text-decoration-none text-white"
+                        to={`/details/${movie.media_type}/${movie.id}`}>Details</Link>
+                    </Button>
+
+                    {/* <span> <Rate className=" my-3 w-75" defaultValue={product.rating.rate} allowHalf /></span>*/}
+
+                  </CardActions>
+                </Card>
+              )
+            })}
+          </div>
         </div></div >
-    </>)
+    </>
+
+  )
 }
 export default Movie;
 
