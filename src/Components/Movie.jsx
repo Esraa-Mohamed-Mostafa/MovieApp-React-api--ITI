@@ -10,27 +10,26 @@ const Movie = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   useEffect(() => {
-    const loadUsers = async () => {
+    const loadMovies = async () => {
       try {
         const res = await axios.get("https://api.themoviedb.org/3/trending/all/day?api_key=14bdd69ce887376edfafb09f23f78fe9");
         //console.log(res.data.results);
         setMovieData(res.data.results);
         console.log(movieData)
         setLoading(false);
-
       }
       catch (error) {
         setLoading(false);
         setError("error from server");
       }
     }
-    loadUsers();
+    loadMovies();
   }, []);
 
 
   if (loading) {
     return <>
-      <div class="d-flex justify-content-center align-items-center py-5">
+      <div className="d-flex justify-content-center align-items-center py-5">
 
 
         <Spinner style={{ color: 'black', width: '8rem', padding: '4rem' }} animation="border" role="status">
@@ -59,14 +58,14 @@ const Movie = () => {
                       <h4 >{movie.title}</h4>
                       {/* <span>
                                           <Rate className=" my-3 w-75" defaultValue={product.rating.rate} allowHalf /></span>*/}
-                        <span className=" bg-dark p-2 rounded-circle">
+                        {/* <span className=" bg-dark p-2 rounded-circle">
                           <Link className=" text-decoration-none text-white"
-                            to={`/details/${movie.id}`}>Details</Link></span>
+                            to={`/details/${movie.id}`}>Details</Link></span> */}
 
-                      {/* <span className=" bg-dark p-2 rounded-circle">
+                      <span className=" bg-dark p-2 rounded-circle">
                         <Link className=" text-decoration-none text-white"
-                          to={`/details/ ${movie.title}}/${movie.id}`}>Details</Link>
-                          </span> */}
+                          to={`/details/${movie.media_type}/${movie.id}`}>Details</Link>
+                          </span>
 
                     </Card.Body>
                   </div>

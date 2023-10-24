@@ -13,10 +13,8 @@ function App() {
 <div>
   <Navbar/>
 <Routes>
-  <Route path="/details/:id" element={<Details/>}/>
   <Route path="/movie" element={<Movie/>}/>
-
-  {/* <Route path="/details/:name/:id" element={<Details/>}/> */}
+  <Route path="/details/:media_type/:id" element={<Details/>}/>
 
 
 </Routes>
