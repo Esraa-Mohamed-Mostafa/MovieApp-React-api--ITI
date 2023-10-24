@@ -7,9 +7,13 @@ import { Link } from "react-router-dom";
 
 const Movie = () => {
   const [movieData, setMovieData] = useState([]);
+  const [movieDatatwo, setMovieDatatwo] = useState([]);
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [searchValue, setValueSearch] = useState('');
+  const [filterValue, setFilterValue] = useState('');
+
 
 
   const loadMovies = async () => {
@@ -17,6 +21,7 @@ const Movie = () => {
       const res = await axios.get("https://api.themoviedb.org/3/trending/all/day?api_key=14bdd69ce887376edfafb09f23f78fe9");
       //console.log(res.data.results);
       setMovieData(res.data.results);
+      setMovieDatatwo(res.data.results);
       console.log(movieData)
       setLoading(false);
     }
@@ -58,7 +63,31 @@ const Movie = () => {
     setValueSearch(value);
   }
 
-  
+  // function onFilter(event) {
+  //   setFilterValue(event.target.value);
+  //   let match= movieData.filter((item) => 
+  //    item.media_type.includes(filterValue)
+  //     )
+  //      setMovieData(match)
+  // { return item.a === true; }
+  // else if (filterValue=== 'b') { return item.a === false; }
+  // else { return item; }
+
+
+  const handelType = (event)=> {
+    setFilterValue(event.target.value);
+    onFilter(event.target.value)
+
+  }
+  const onFilter = (type) => {
+    const filtered = movieDatatwo.filter((item) =>
+      item.media_type === type
+    )
+    setMovieData(filtered);
+
+
+
+  }
   return (
     <>
       <div className="py-3 ">
@@ -67,8 +96,13 @@ const Movie = () => {
             value={searchValue}
             onChange={(e) => handleSearch(e.target.value)}
           />
-
-          <button>s</button>
+          <div>
+            <select id="type" onChange={handelType}>
+              <option value="movie"> movie</option>
+              <option value="tv"> tv</option>
+              <option value="person"> person</option>
+            </select>
+          </div>
 
 
           <h2 className="py-3 ">
