@@ -1,0 +1,33 @@
+.searchSelect {
+    background-color: rgb(244, 248, 252);
+    padding: 17px;
+    margin-bottom: 30px;
+
+}
+
+.searchSelectele {
+    display: flex;
+    justify-content: space-between;
+}
+
+.searchstyle {
+    width: 50%;
+}
+
+.moicon {
+    position: absolute;
+    top: 0;
+    left: 77%;
+    transform: translateX(100%);
+    font-size: 12px;
+    background: #0d68df;
+    color:white;
+    width: 40px;
+    height: 40px;
+    line-height: 0;
+    border-radius: 0px;
+    border: 5px solid #b3bbec;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}

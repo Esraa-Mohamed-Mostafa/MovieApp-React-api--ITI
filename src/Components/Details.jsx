@@ -1,12 +1,9 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import './Details.css';
 
-
-
-
-
+//style
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -19,91 +16,87 @@ import { Container } from "@mui/material";
 
 
 function Details() {
-  const [movieData, setMovieData] = useState({});
-
+  const [movieDetails, setMovieDetails] = useState({});
   const { id, media_type } = useParams()
-  console.log('m', media_type);
-  // const params = useParams();
-  // console.log('params', params);
+  // console.log('m', media_type);
 
   useEffect(() => {
     const loadDetails = async () => {
       try {
         const res = await axios.get(
           `https://api.themoviedb.org/3/${media_type}/${id}?api_key=14bdd69ce887376edfafb09f23f78fe9`)
-        setMovieData(res.data);
-        console.log(movieData)
+        setMovieDetails(res.data);
+        // console.log(movieDetails)
+
       }
       catch (error) {
-        console.log("error")
+        console.log(error)
       }
     }
     loadDetails();
   }, []);
 
 
+  let hour = Math.floor(movieDetails.runtime / 60);
+
+
   return (
     <>
+      <div className="project__item">
 
-
-      <div class="project__item">
-        <figure class="project__img">
-          {/* <CardMedia
-            sx={{ height: 500 }}
-            image={"https://image.tmdb.org/t/p/w500/" + movieData.backdrop_path}
-            title="green iguana"
-          /> */}
+        <figure className="imgBackdrop">
+          <img src={"https://image.tmdb.org/t/p/w500" + movieDetails.backdrop_path} />
         </figure>
 
         <div >
           <Container className="py-1">
+            <div className="content ">
+              <figure className="imgPoster ">
+                <img src={"https://image.tmdb.org/t/p/w500" + movieDetails.poster_path} />
+              </figure>
 
+              <div className="col-7 bg-primary">
+                <CardContent>
+                  <Typography gutterBottom variant="h3">
+                    {movieDetails.title}
+                  </Typography>
+                  <Typography variant="p" >
+                    {movieDetails.overview}
+                  </Typography>
 
-            <div sx={{ maxWidth: 345, margin: '10px',display:'flex' }}>
+                  <div className="two m-4 ">
+                  <Typography gutterBottom variant="P">
+                    <Link className=" text-decoration-none text-white"
+                      to={movieDetails.homepage}>WATCH THE TRAILER</Link></Typography>
+                    <Typography gutterBottom variant="P">
+                      {hour} h
+                    </Typography>
+                    <div>
+                    {movieDetails.genres?.map((item) => {
+                      return (
+                        <Typography key={item.id} gutterBottom variant="P">
+                          {item.name}.  </Typography>
+                        
+                      )
+                    })}</div>
+                    <Typography gutterBottom variant="P" >
+                      {movieDetails.release_date}
+                    </Typography>
+                  </div>
 
+                  <div className="three">
+                    <Typography variant="h6" >
+                      {movieDetails.vote_average}
+                    </Typography>
+                    <Typography variant="h6" >
+                     <span className="text-secondary">Status: </span>{movieDetails.status}
+                    </Typography></div>
 
-              <CardMedia
-                sx={{ height: 140 }}
-                image={"https://image.tmdb.org/t/p/w500/" + movieData.poster_path}
-                title="green iguana"
-              />
-              {/* <Card.Img orientation="top" className="card-img-top p-4" src={product.image} /> */}
+                </CardContent>
+              </div>
 
-              <CardContent>
-                <Typography gutterBottom variant="h3" component="div">
-                  {movieData.title}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {movieData.overview}
-                </Typography>
-
-                <Typography gutterBottom variant="h5" component="div">
-                  {movieData.release_date}
-                </Typography>
-
-                <Typography gutterBottom variant="h5" component="div">
-                  {movieData.runtime}
-                </Typography>
-
-              
-
-              {movieData.genres?.map((item) => {
-
-                <Typography gutterBottom variant="h5" component="div">
-                  {item.name}
-                </Typography>
-              })}
-
-              <CardActions>
-
-                <Button variant="contained" href="#contained-buttons">
-
-                </Button>
-
-                {/* <span> <Rate className=" my-3 w-75" defaultValue={product.rating.rate} allowHalf /></span>*/}
-
-              </CardActions></CardContent>
-            </div></Container>
+            </div>
+          </Container>
         </div>
       </div>
 

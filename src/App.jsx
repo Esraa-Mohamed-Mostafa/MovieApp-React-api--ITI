@@ -12,7 +12,7 @@ function App() {
 <div>
   <NAvbar/>
 <Routes>
-  <Route path="/movie" element={<Movie/>}/>
+  <Route path="" element={<Movie/>}/>
   <Route path="/details/:media_type/:id" element={<Details/>}/>
 
 
