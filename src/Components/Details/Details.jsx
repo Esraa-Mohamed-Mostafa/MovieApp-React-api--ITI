@@ -1,17 +1,12 @@
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import './Details.css';
 
 //style
+import '../Details/Details.css';
 import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Container } from "@mui/material";
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 
@@ -29,7 +24,6 @@ function Details() {
           `https://api.themoviedb.org/3/${media_type}/${id}?api_key=14bdd69ce887376edfafb09f23f78fe9`)
         setMovieDetails(res.data);
         // console.log(movieDetails)
-
       }
       catch (error) {
         console.log(error)
@@ -38,8 +32,6 @@ function Details() {
     loadDetails();
   }, []);
 
-
-  let hour = Math.floor(movieDetails.runtime / 60);
 
 
   return (
@@ -78,7 +70,6 @@ function Details() {
                       return (
                         <Typography sx={{ fontSize: 18}} key={item.id} gutterBottom variant="p">
                           {item.name}.  </Typography>
-                        
                       )
                     })}</div>
                     <Typography gutterBottom variant="p" sx={{ fontSize: 18 }} >
