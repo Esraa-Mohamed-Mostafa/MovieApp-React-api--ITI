@@ -1,44 +1,14 @@
-/* .project__item {
-    position: relative;
-    overflow: hidden;
-  }
-   */
-/* .project__item .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(28, 30, 83, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    padding: 1.25rem;
-  } */
-/* .overlayyy {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    padding: 1.25rem;
-  } */
-
-
 .imgBackdrop {
   position: relative;
   overflow: hidden;
-  height: 700px;
+  height: 40%;
   object-fit: cover;
   width: 100%;
 
 }
 
 .imgBackdrop img {
-  filter: blur(8px);
+  filter: blur(5px);
 }
 
 img {
@@ -50,13 +20,11 @@ img {
   justify-content: center;
   align-items: flex-start;
   position: absolute;
-  top: 80%;
+  top: 110%;
   left: 0;
   width: 100%;
   height: 100%;
   display: flex;
-  padding: 1.25rem;
-  color: white;
 }
 
 .imgPoster {
@@ -64,12 +32,40 @@ img {
 }
 
 
-.two {
+.contenttwo {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
-.three {
+.contentthree {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
+}
+
+.project__item {
+  color: black;
+}
+
+@media screen and (max-width:991px) {
+  .imgBackdrop {
+    display: none;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .imgPoster {
+    width: 100%
+  }
+
+  .contenttwo,
+  .contentthree {
+    display: flex;
+    flex-direction: column;
+
+  }
+
 }

@@ -19,6 +19,8 @@ import Select from '@mui/material/Select';
 import './Movie.css';
 import { Container } from "react-bootstrap";
 
+import InputAdornment from '@mui/material/InputAdornment';
+
 
 const Movie = () => {
   const [movieData, setMovieData] = useState([]);
@@ -48,7 +50,7 @@ const Movie = () => {
     loadMovies();
   }, []);
 
-//loading
+  //loading
   if (loading) {
     return <>
       <div className="d-flex justify-content-center align-items-center py-5">
@@ -105,12 +107,15 @@ const Movie = () => {
           <Container>
             <div className="searchSelectele">
               <div className="searchstyle">
-                <TextField fullWidth id="standard-basic" label="Find movies tv shows documentary and more ..."
-                  variant="standard"
+
+                <TextField fullWidth id="standard-basic" variant="standard"
+                  placeholder="Find movies tv shows documentary and more ..."
                   value={searchValue}
-                  onChange={(e) => handleSearch(e.target.value)} >
-                </TextField>
-                <SearchIcon position="start"> </SearchIcon>
+                  onChange={(e) => handleSearch(e.target.value)}
+                  InputProps={{
+                    startAdornment: (<SearchIcon position="start"
+                    > </SearchIcon >),
+                  }} />
               </div>
 
               <div className="selectstyle">
@@ -135,7 +140,7 @@ const Movie = () => {
           <div className="row">
             {movieData.map((movie) => {
               return (
-                <Card key={movie.id} sx={{ maxWidth: 345, margin: '10px', position:'relative' }}>
+                <Card key={movie.id} sx={{ maxWidth: 345, margin: '10px', position: 'relative' }}>
                   <CardMedia
                     sx={{ height: 140 }}
                     image={"https://image.tmdb.org/t/p/w500/" + movie.poster_path}
@@ -144,26 +149,26 @@ const Movie = () => {
 
                   <CardContent>
                     <Typography gutterBottom variant="h5" >
-                      {movie.title||movie.original_name}
+                      {movie.title || movie.original_name}
                     </Typography>
                     <Typography variant="p" color="text.secondary">
-                    Original Language: {movie.original_language}
+                      Original Language: {movie.original_language}
                     </Typography>
                   </CardContent>
                   <div className="moicon">{movie.vote_average}</div>
                   <CardActions>
-                    <Button variant="contained" href="#contained-buttons">
+                    <Typography gutterBottom variant="h6" className="bg-primary p-2 borderstyle" >
                       <Link className=" text-decoration-none text-white"
                         to={`/details/${movie.media_type}/${movie.id}`}>Details</Link>
-                    </Button>
+                    </Typography>
                   </CardActions>
                 </Card>
               )
             })}
           </div>
         </Container>
-        
-        </div >
+
+      </div >
     </>
 
   )

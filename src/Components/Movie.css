@@ -8,6 +8,7 @@
 .searchSelectele {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .searchstyle {
@@ -31,3 +32,5 @@
     align-items: center;
     justify-content: center;
 }
+
+.borderstyle{border-radius: 10px;}

@@ -12,6 +12,8 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Container } from "@mui/material";
+import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
 
 
 
@@ -41,7 +43,6 @@ function Details() {
 
 
   return (
-    <>
       <div className="project__item">
 
         <figure className="imgBackdrop">
@@ -49,59 +50,58 @@ function Details() {
         </figure>
 
         <div >
-          <Container className="py-1">
+          <div className=" container py-1">
             <div className="content ">
-              <figure className="imgPoster ">
+              <figure className="imgPoster me-5 ">
                 <img src={"https://image.tmdb.org/t/p/w500" + movieDetails.poster_path} />
               </figure>
 
-              <div className="col-7 bg-primary">
-                <CardContent>
-                  <Typography gutterBottom variant="h3">
-                    {movieDetails.title}
+              <div className=" col-lg-6 ">
+                <CardContent className="cardcontent">
+                  <Typography className="my-4 text-light" gutterBottom variant="h3">
+                    {movieDetails.title|| movieDetails.original_name}
                   </Typography>
-                  <Typography variant="p" >
+                  <Typography  className="my-4" variant="p" >
                     {movieDetails.overview}
                   </Typography>
 
-                  <div className="two m-4 ">
+                  <div className="contenttwo m-4 ">
                   <Typography gutterBottom variant="P">
-                    <Link className=" text-decoration-none text-white"
+                    <PlayCircleOutlineIcon sx={{ fontSize: 40 }} className="me-3"></PlayCircleOutlineIcon>
+                    <Link className="text-decoration-none text-dark"
                       to={movieDetails.homepage}>WATCH THE TRAILER</Link></Typography>
-                    <Typography gutterBottom variant="P">
-                      {hour} h
+                    <Typography  sx={{ fontSize: 18 }} gutterBottom variant="p">
+                      {movieDetails.runtime || movieDetails.episode_run_time} Min
                     </Typography>
                     <div>
                     {movieDetails.genres?.map((item) => {
                       return (
-                        <Typography key={item.id} gutterBottom variant="P">
+                        <Typography sx={{ fontSize: 18}} key={item.id} gutterBottom variant="p">
                           {item.name}.  </Typography>
                         
                       )
                     })}</div>
-                    <Typography gutterBottom variant="P" >
-                      {movieDetails.release_date}
+                    <Typography gutterBottom variant="p" sx={{ fontSize: 18 }} >
+                      {movieDetails.release_date || movieDetails.first_air_date}
                     </Typography>
                   </div>
 
-                  <div className="three">
+                  <div className="contentthree m-4 text-dark">
                     <Typography variant="h6" >
+                      <StarBorderIcon sx={{ fontSize: 34 }} className="mx-3"></StarBorderIcon>
                       {movieDetails.vote_average}
                     </Typography>
                     <Typography variant="h6" >
-                     <span className="text-secondary">Status: </span>{movieDetails.status}
+                     <span style={{fontSize: 25 }} className="text-secondary">Status: </span>{movieDetails.status}
                     </Typography></div>
 
                 </CardContent>
               </div>
 
             </div>
-          </Container>
+          </div>
         </div>
       </div>
-
-
-    </>
   )
 }
 export default Details;
