@@ -1,50 +1,76 @@
 .imgBackdrop {
   position: relative;
   overflow: hidden;
-  height: 40%;
-  object-fit: cover;
-  width: 100%;
-
+  height: 100vh;
 }
 
 .imgBackdrop img {
-  filter: blur(5px);
+  filter: blur(8px);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
+
 img {
-  width: 100%
+  width: 100%;
+  display: block;
 }
 
 .content {
+  position: absolute;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  position: absolute;
-  top: 110%;
-  left: 0;
+  align-items: center;
+  top: 10%;
   width: 100%;
   height: 100%;
   display: flex;
 }
 
 .imgPoster {
-  width: 20%
+  width: 25%;
 }
 
-
-.contenttwo {
+.contentFlex {
   display: flex;
   justify-content: space-between;
+  margin-top: 1rem;
 }
 
 .contentthree {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
 .project__item {
   color: black;
+  background-color: #181818;
 }
+
+.pargraph,
+.contenttwo {
+  font-size: 1.3rem;
+}
+
+
+
+/* Add responsive styling for smaller screens */
+/* @media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    align-items: center;
+    top: 0;
+  } */
+/* Adjust as needed for smaller screens */
+/* .imgPoster {
+    width: 50%; 
+    margin-bottom: 20px;
+  }
+} */
+
+/* Add any other styling you need */
+
 
 @media screen and (max-width:991px) {
   .imgBackdrop {

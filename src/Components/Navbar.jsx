@@ -5,29 +5,38 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import '../App.css';
+import menu from "../Components/menu.png";
+
 
 
 function NAvbar() {
     return (
-        <Navbar bg="primary" data-bs-theme="dark">
-            <Container>
-                <Nav className=" ">
-                    <div className="d-flex justify-content-between">
-                        <div style={{ paddingRight: '50px ' ,width: '200px',paddingTop:'5px'}}>
-                        < Link to="/"> <img alt="Your logo." src={logo} /></Link>
-                            </div>
-                        <div className="d-flex">
-                            <Nav.Link className="" >Home</Nav.Link>
-                            <Nav.Link >Pages</Nav.Link>
-                            <Nav.Link >Movies</Nav.Link>
-                            <Nav.Link >Tv Shows</Nav.Link>
-                            <Nav.Link >Celebs</Nav.Link>
-                            <Nav.Link >Blog</Nav.Link>
+        <>
+            {/* <Navbar> */}
+            <div className="bg-black">
+                <Container >
+                    <Nav className="py-4 d-flex justify-content-around align-items-center ">
+                        <div style={{ paddingRight: '50px ', width: '200px', paddingTop: '5px', }}>
+                            <Link to="/"> <img alt="Your logo." src={logo} /></Link>
                         </div>
-                    </div>
-                </Nav>
+                        <div className="links d-flex  ">
+                            <Nav.Link className="text-white d-none d-lg-block" >Home</Nav.Link>
+                            <Nav.Link className="text-white d-none d-lg-block">Pages</Nav.Link>
+                            <Nav.Link className="text-white d-none d-lg-block" >Movies</Nav.Link>
+                            <Nav.Link className="text-white d-none d-lg-block" >Tv Shows</Nav.Link>
+                            <Nav.Link className="text-white d-none d-lg-block">Celebs</Nav.Link>
+                            <Nav.Link className="text-white d-none d-lg-block">Blog</Nav.Link>
+                        </div>
+                        <div className="burger-menu  d-block d-lg-none">
+                            <img alt="Your menu." src={menu} />
+                        </div>
+
+                    </Nav>
                 </Container>
-        </Navbar>
+            </div>
+            {/* </Navbar> */}
+
+        </>
     );
 }
 export default NAvbar;

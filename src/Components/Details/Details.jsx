@@ -35,64 +35,66 @@ function Details() {
 
 
   return (
-      <div className="project__item">
+    <div className="project__item">
 
-        <figure className="imgBackdrop">
-          <img src={"https://image.tmdb.org/t/p/w500" + movieDetails.backdrop_path} />
-        </figure>
+      <div className="imgBackdrop">
 
-        <div >
-          <div className=" container py-1">
-            <div className="content ">
-              <figure className="imgPoster me-5 ">
-                <img src={"https://image.tmdb.org/t/p/w500" + movieDetails.poster_path} />
-              </figure>
+        <img src={"https://image.tmdb.org/t/p/w500" + movieDetails.backdrop_path} />
+      </div>
 
-              <div className=" col-lg-6 ">
-                <CardContent className="cardcontent">
-                  <Typography className="my-4 text-light" gutterBottom variant="h3">
-                    {movieDetails.title|| movieDetails.original_name}
-                  </Typography>
-                  <Typography  className="my-4" variant="p" >
-                    {movieDetails.overview}
-                  </Typography>
+      <div >
+        <div className=" container">
+          <div className="content ">
+            <figure className="imgPoster me-5 ">
+              <img src={"https://image.tmdb.org/t/p/w500" + movieDetails.poster_path} />
+            </figure>
 
-                  <div className="contenttwo m-4 ">
+            <div className=" col-lg-6 ">
+              <CardContent className="cardcontent ">
+                <Typography className="my-4 text-light" gutterBottom variant="h3">
+                  {movieDetails.title || movieDetails.original_name}
+                </Typography>
+                <Typography className="my-4 text-light font-weight-bold  pargraph" variant="p" >
+                  {movieDetails.overview}
+                </Typography>
+
+                <div className="contenttwo m-4 text-light font-weight-bold">
                   <Typography gutterBottom variant="P">
-                    <PlayCircleOutlineIcon sx={{ fontSize: 40 }} className="me-3"></PlayCircleOutlineIcon>
-                    <Link className="text-decoration-none text-dark"
+                    <PlayCircleOutlineIcon sx={{ fontSize: 40 }} className="me-3 "></PlayCircleOutlineIcon>
+                    <Link className="text-decoration-none text-light font-weight-bold "
                       to={movieDetails.homepage}>WATCH THE TRAILER</Link></Typography>
-                    <Typography  sx={{ fontSize: 18 }} gutterBottom variant="p">
+                  <div className="contentFlex ">
+                    <Typography sx={{ fontSize: 18 }} gutterBottom variant="p">
                       {movieDetails.runtime || movieDetails.episode_run_time} Min
                     </Typography>
                     <div>
-                    {movieDetails.genres?.map((item) => {
-                      return (
-                        <Typography sx={{ fontSize: 18}} key={item.id} gutterBottom variant="p">
-                          {item.name}.  </Typography>
-                      )
-                    })}</div>
-                    <Typography gutterBottom variant="p" sx={{ fontSize: 18 }} >
-                      {movieDetails.release_date || movieDetails.first_air_date}
-                    </Typography>
-                  </div>
+                      {movieDetails.genres?.map((item) => {
+                        return (
+                          <Typography sx={{ fontSize: 18 }} key={item.id} gutterBottom variant="p">
+                            {item.name}.  </Typography>
+                        )
+                      })}</div>
+                  <Typography gutterBottom variant="p" sx={{ fontSize: 18 }} >
+                    {movieDetails.release_date || movieDetails.first_air_date}
+                  </Typography></div>
+                </div>
 
-                  <div className="contentthree m-4 text-dark">
-                    <Typography variant="h6" >
-                      <StarBorderIcon sx={{ fontSize: 34 }} className="mx-3"></StarBorderIcon>
-                      {movieDetails.vote_average}
-                    </Typography>
-                    <Typography variant="h6" >
-                     <span style={{fontSize: 25 }} className="text-secondary">Status: </span>{movieDetails.status}
-                    </Typography></div>
+                <div className="contentthree m-4 text-light font-weight-bold">
+                  <Typography variant="h6" >
+                    <StarBorderIcon sx={{ fontSize: 34 }} className="mx-3"></StarBorderIcon>
+                    {movieDetails.vote_average}
+                  </Typography>
+                  <Typography variant="h6" >
+                    <span style={{ fontSize: 25 }} className="">Status: </span>{movieDetails.status}
+                  </Typography></div>
 
-                </CardContent>
-              </div>
-
+              </CardContent>
             </div>
+
           </div>
         </div>
       </div>
+    </div>
   )
 }
 export default Details;
